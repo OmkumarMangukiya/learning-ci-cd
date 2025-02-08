@@ -1,7 +1,18 @@
 FROM node:20.12.0-alpine3.19
+
 WORKDIR /usr/src/app
+
+# Copy necessary files
 COPY package.json package-lock.json tsconfig.json ./
-COPY /src/app
-RUN npm install 
-RUN npm run build 
-CMD ["npm" , "run" , "start-some-app"]
+
+# Copy the source code
+COPY src/ ./src/
+
+# Install dependencies
+RUN npm install
+
+# Build the app
+RUN npm run build
+
+# Start the application
+CMD ["npm", "run", "start-some-app"]
