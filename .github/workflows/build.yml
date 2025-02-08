@@ -1,0 +1,22 @@
+name: Building PR
+on :
+    pull_request:
+        branches:
+            maaster
+jobs:
+    build:
+        name : building project 
+        runs-on: ubuntu-latest
+        steps:
+            - uses : actions/checkout@v3
+            - name : Use node.js
+              uses : actions/setup-node@v3
+              with :
+                    node-version: '20'
+            - name : Install dependencies 
+              run : npm install 
+
+            - name : running build
+              run : npm run build
+
+            
